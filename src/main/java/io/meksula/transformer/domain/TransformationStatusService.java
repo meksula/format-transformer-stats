@@ -11,6 +11,9 @@ public class TransformationStatusService {
 
     private RestTemplate restTemplate = new RestTemplate();
 
+    @Value("${format-transformer.scheme}")
+    private String formatTransformerScheme;
+
     @Value("${format-transformer.host}")
     private String formatTransformerHost;
 
@@ -21,7 +24,7 @@ public class TransformationStatusService {
     private String formatTransformerGetStats;
 
     StatisticsDto getDataFromFormatTransformer() {
-        final String URL = formatTransformerHost.concat(":").concat(formatTransformerPort).concat(formatTransformerGetStats);
+        final String URL = formatTransformerScheme.concat(formatTransformerHost.concat(":").concat(formatTransformerPort).concat(formatTransformerGetStats));
         log.info("Request to: {}", URL);
         return restTemplate.getForEntity(URL, StatisticsDto.class).getBody();
     }

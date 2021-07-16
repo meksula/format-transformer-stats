@@ -2,6 +2,7 @@ server:
   port: 8080
 
 format-transformer:
+  scheme: http://
   host: format-transformer.io
   port: 8080
   get-stats: /api/v1/stats

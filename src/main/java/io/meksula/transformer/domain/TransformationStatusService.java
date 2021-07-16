@@ -11,14 +11,17 @@ public class TransformationStatusService {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    @Value("${format-transformer}")
-    private String formatTransformerUrl;
+    @Value("${format-transformer.host}")
+    private String formatTransformerHost;
 
-    @Value("${format-transformer-get-stats}")
+    @Value("${format-transformer.port}")
+    private String formatTransformerPort;
+
+    @Value("${format-transformer.get-stats}")
     private String formatTransformerGetStats;
 
     StatisticsDto getDataFromFormatTransformer() {
-        final String URL = formatTransformerUrl.concat(formatTransformerGetStats);
+        final String URL = formatTransformerHost.concat(":").concat(formatTransformerPort).concat(formatTransformerGetStats);
         log.info("Request to: {}", URL);
         return restTemplate.getForEntity(URL, StatisticsDto.class).getBody();
     }

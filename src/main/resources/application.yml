@@ -1,6 +1,7 @@
 server:
   port: 7002
 format-transformer:
+  scheme: http://
   host: localhost
   port: 7001
   get-stats: /api/v1/stats

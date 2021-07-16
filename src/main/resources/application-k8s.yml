@@ -1,2 +1,5 @@
 server:
   port: 8080
+
+format-transformer-get-stats: /api/v1/stats
+format-transformer: http://localhost:7001

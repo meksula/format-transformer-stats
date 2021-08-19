@@ -3,6 +3,6 @@ server:
 
 format-transformer:
   scheme: http://
-  host: format-transformer.io
-  port: 8080
+  host: format-transformer-svc.ft-backend.svc.cluster.local
+  port: 80
   get-stats: /api/v1/stats

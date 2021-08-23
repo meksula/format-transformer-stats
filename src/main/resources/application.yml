@@ -5,3 +5,5 @@ format-transformer-persister:
   host: localhost
   port: 7001
   get-stats: /api/v1/stats
+
+FORMAT_TRANSFORMER_PERSISTER_HOST: localhost

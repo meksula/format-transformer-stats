@@ -31,7 +31,12 @@ public class TransformationStatusService {
     }
 
     StatisticsDto getDataFromFormatTransformer() {
-        final String URL = formatTransformerScheme.concat(formatTransformerHost.concat(":").concat(formatTransformerPort).concat(formatTransformerGetStats));
+        if (this.formatTransformerPort != null && !this.formatTransformerPort.isEmpty()) {
+            this.formatTransformerPort = ":".concat(this.formatTransformerPort);
+        } else {
+            this.formatTransformerPort = "";
+        }
+        final String URL = formatTransformerScheme.concat(formatTransformerHost.concat(formatTransformerPort).concat(formatTransformerGetStats));
         log.info("Request to: {}", URL);
         return restTemplate.getForEntity(URL, StatisticsDto.class).getBody();
     }

@@ -5,23 +5,30 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
+
 @Slf4j
 @Service
 public class TransformationStatusService {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    @Value("${format-transformer.scheme}")
+    @Value("${format-transformer-persister.scheme}")
     private String formatTransformerScheme;
 
-    @Value("${format-transformer.host}")
+    @Value("${FORMAT_TRANSFORMER_PERSISTER_HOST : ${format-transformer-persister.host}}")
     private String formatTransformerHost;
 
-    @Value("${format-transformer.port}")
+    @Value("${format-transformer-persister.port}")
     private String formatTransformerPort;
 
-    @Value("${format-transformer.get-stats}")
+    @Value("${format-transformer-persister.get-stats}")
     private String formatTransformerGetStats;
+
+    @PostConstruct
+    public void describe() {
+        log.info("formatTransformerHost: {}", this.formatTransformerHost);
+    }
 
     StatisticsDto getDataFromFormatTransformer() {
         final String URL = formatTransformerScheme.concat(formatTransformerHost.concat(":").concat(formatTransformerPort).concat(formatTransformerGetStats));

@@ -1,6 +1,6 @@
 server:
   port: 7002
-format-transformer:
+format-transformer-persister:
   scheme: http://
   host: localhost
   port: 7001

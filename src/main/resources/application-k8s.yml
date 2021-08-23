@@ -3,6 +3,4 @@ server:
 
 format-transformer-persister:
   scheme: http://
-  host: format-transformer-persister-service.ft-backend.svc.cluster.local
-  port:
   get-stats: /api/v1/stats

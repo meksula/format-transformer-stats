@@ -2,8 +2,9 @@ server:
   port: 7002
 format-transformer-persister:
   scheme: http://
-  host: localhost
-  port: 7001
+#  host: localhost
+#  port: 7001
   get-stats: /api/v1/stats
 
 FORMAT_TRANSFORMER_PERSISTER_HOST: localhost
+FORMAT_TRANSFORMER_PERSISTER_PORT: 7001

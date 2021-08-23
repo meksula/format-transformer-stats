@@ -25,19 +25,21 @@ public class TransformationStatusService {
     @Value("${format-transformer-persister.get-stats}")
     private String formatTransformerGetStats;
 
+    private String url;
+
     @PostConstruct
     public void describe() {
         log.info("formatTransformerHost: {}", this.formatTransformerHost);
-    }
-
-    StatisticsDto getDataFromFormatTransformer() {
-        if (this.formatTransformerPort != null && !this.formatTransformerPort.isEmpty()) {
+        if (this.formatTransformerPort != null && !this.formatTransformerPort.isEmpty() && !this.formatTransformerPort.endsWith(":")) {
             this.formatTransformerPort = ":".concat(this.formatTransformerPort);
         } else {
             this.formatTransformerPort = "";
         }
-        final String URL = formatTransformerScheme.concat(formatTransformerHost.concat(formatTransformerPort).concat(formatTransformerGetStats));
-        log.info("Request to: {}", URL);
-        return restTemplate.getForEntity(URL, StatisticsDto.class).getBody();
+        this.url = formatTransformerScheme.concat(formatTransformerHost.concat(formatTransformerPort).concat(formatTransformerGetStats));
+    }
+
+    StatisticsDto getDataFromFormatTransformer() {
+        log.info("Request to: {}", this.url);
+        return restTemplate.getForEntity(this.url, StatisticsDto.class).getBody();
     }
 }

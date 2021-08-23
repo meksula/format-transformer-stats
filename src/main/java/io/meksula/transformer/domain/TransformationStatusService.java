@@ -16,7 +16,7 @@ public class TransformationStatusService {
     @Value("${format-transformer-persister.scheme}")
     private String formatTransformerScheme;
 
-    @Value("${FORMAT_TRANSFORMER_PERSISTER_HOST : ${format-transformer-persister.host}}")
+    @Value("${FORMAT_TRANSFORMER_PERSISTER_HOST}")
     private String formatTransformerHost;
 
     @Value("${format-transformer-persister.port}")
